@@ -10,7 +10,7 @@ import (
 	"strconv"
 )
 
-const handlerName = "TransactionHandler"
+const handlerName = "TaskHandler"
 
 type TaskUsecase interface {
 	Store(ctx context.Context, request dto.PostTaskRequest) (int, error)
@@ -52,13 +52,13 @@ func (th *TaskHandler) HandlePostTask(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	transactions, err := th.taskUsecase.Store(ctx, postReq)
+	tasks, err := th.taskUsecase.Store(ctx, postReq)
 	if err != nil {
 		respondWithError(th.logger, w, http.StatusInternalServerError, "failed to store task")
 		return
 	}
 
-	respondWithJSON(w, http.StatusOK, transactions)
+	respondWithJSON(w, http.StatusOK, tasks)
 }
 
 func (th *TaskHandler) HandleGetAllTasks(w http.ResponseWriter, r *http.Request) {
@@ -102,13 +102,13 @@ func (th *TaskHandler) HandleGetTaskById(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
-	transactions, err := th.taskUsecase.GetByTaskId(ctx, taskId)
+	tasks, err := th.taskUsecase.GetByTaskId(ctx, taskId)
 	if err != nil {
 		respondWithError(th.logger, w, http.StatusInternalServerError, "failed to retrieve task")
 		return
 	}
 
-	respondWithJSON(w, http.StatusOK, transactions)
+	respondWithJSON(w, http.StatusOK, tasks)
 }
 
 func respondWithError(logger Logger, w http.ResponseWriter, code int, message string) {

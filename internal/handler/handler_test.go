@@ -65,7 +65,7 @@ func TestNewTaskHandler(t *testing.T) {
 			t.Fatal("Expected error for nil usecase, got nil")
 		}
 
-		expectedErr := "nil values in TransactionHandler constructor"
+		expectedErr := "nil values in TaskHandler constructor"
 		if err.Error() != expectedErr {
 			t.Errorf("Expected error '%s', got '%v'", expectedErr, err)
 		}
