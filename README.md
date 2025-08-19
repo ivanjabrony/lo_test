@@ -1,4 +1,4 @@
-# casino transaction manager
+# task manager
 
 
 ## Project layout
