@@ -1,0 +1,10 @@
+  version: '3.8'
+
+  services:
+    app:
+      build: .
+      ports:
+        - "8080:8080"
+      environment:
+        - HTTP_PORT=${HTTP_PORT}
+      restart: unless-stopped
